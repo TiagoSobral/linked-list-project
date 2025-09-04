@@ -12,6 +12,10 @@ class LinkedList {
 			temp.nextNode = new Node(value);
 		}
 	}
+
+	prepend(value) {
+		this.head = new Node(value, this.head);
+	}
 }
 
 class Node {
@@ -23,5 +27,6 @@ class Node {
 const list = new LinkedList();
 
 list.append('hey');
+list.prepend('oi');
 
 console.log(list);
