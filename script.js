@@ -16,6 +16,17 @@ class LinkedList {
 	prepend(value) {
 		this.head = new Node(value, this.head);
 	}
+
+	size() {
+		debugger;
+		let node = this.head;
+		let result = 0;
+		while (node != null) {
+			result += 1;
+			node = node.nextNode;
+		}
+		return result;
+	}
 }
 
 class Node {
@@ -28,5 +39,6 @@ const list = new LinkedList();
 
 list.append('hey');
 list.prepend('oi');
+console.log(list.size());
 
 console.log(list);
