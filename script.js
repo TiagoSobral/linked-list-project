@@ -66,7 +66,7 @@ class LinkedList {
 	}
 
 	contains(value, node = this.head) {
-		debugger;
+		// debugger;
 		if (node.value == value) {
 			return true;
 		} else if (node.nextNode == null) {
@@ -74,6 +74,18 @@ class LinkedList {
 		} else {
 			return this.contains(value, node.nextNode);
 		}
+	}
+
+	find(value) {
+		debugger;
+		let curr = this.head;
+		let index = 0;
+		while (curr.nextNode != null && curr.value != value) {
+			index += 1;
+			curr = curr.nextNode;
+		}
+		if (curr.value == value) return index;
+		return null;
 	}
 }
 
@@ -87,16 +99,13 @@ const list = new LinkedList();
 
 list.append('hey');
 list.append('lel');
-list.append('lelss');
-list.append('lelsada');
-list.append('lobb');
 list.prepend('oi');
 list.size();
 list.first();
 list.tail();
 list.at(1);
 list.pop();
-console.log(list.contains('lelss'));
-// console.log(list.find('l'));
+list.contains('lelss');
+list.find('lel');
 
 console.dir(list);
