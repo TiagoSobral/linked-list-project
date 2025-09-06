@@ -66,10 +66,14 @@ class LinkedList {
 	}
 
 	contains(value, node = this.head) {
-		if (node.nextNode == null) {
-			return node.value == value;
+		debugger;
+		if (node.value == value) {
+			return true;
+		} else if (node.nextNode == null) {
+			return false;
+		} else {
+			return this.contains(value, node.nextNode);
 		}
-		return this.contains(value, node.nextNode);
 	}
 }
 
@@ -83,12 +87,16 @@ const list = new LinkedList();
 
 list.append('hey');
 list.append('lel');
+list.append('lelss');
+list.append('lelsada');
+list.append('lobb');
 list.prepend('oi');
 list.size();
 list.first();
 list.tail();
 list.at(1);
 list.pop();
-console.log(list.contains('hey'));
+console.log(list.contains('lelss'));
+// console.log(list.find('l'));
 
-console.log(list);
+console.dir(list);
