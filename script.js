@@ -44,6 +44,16 @@ class LinkedList {
 		}
 		return previous;
 	}
+
+	at(index) {
+		let array = [];
+		let temp = this.head;
+		while (temp.nextNode != null) {
+			array.push(temp);
+			temp = temp.nextNode;
+		}
+		return array[index];
+	}
 }
 
 class Node {
@@ -60,3 +70,6 @@ list.prepend('oi');
 list.size();
 list.first();
 list.tail();
+console.log(list.at(0));
+
+console.log(list);
