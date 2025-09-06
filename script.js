@@ -64,6 +64,13 @@ class LinkedList {
 		}
 		curr.nextNode = null;
 	}
+
+	contains(value, node = this.head) {
+		if (node.nextNode == null) {
+			return node.value == value;
+		}
+		return this.contains(value, node.nextNode);
+	}
 }
 
 class Node {
@@ -82,5 +89,6 @@ list.first();
 list.tail();
 list.at(1);
 list.pop();
+console.log(list.contains('hey'));
 
 console.log(list);
