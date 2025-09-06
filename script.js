@@ -36,13 +36,13 @@ class LinkedList {
 	}
 
 	tail() {
-		let previous = this.head;
-		let curr = previous.nextNode;
-		while (curr != null) {
-			previous = curr;
-			curr = curr.nextNode;
+		let curr = this.head;
+		let next = curr.nextNode;
+		while (next != null) {
+			curr = next;
+			next = next.nextNode;
 		}
-		return previous;
+		return curr;
 	}
 
 	at(index) {
@@ -53,6 +53,16 @@ class LinkedList {
 			temp = temp.nextNode;
 		}
 		return array[index];
+	}
+
+	pop() {
+		let curr = this.head;
+		let next = curr.nextNode;
+		while (next.nextNode != null) {
+			curr = next;
+			next = next.nextNode;
+		}
+		curr.nextNode = null;
 	}
 }
 
@@ -70,6 +80,7 @@ list.prepend('oi');
 list.size();
 list.first();
 list.tail();
-console.log(list.at(0));
+list.at(1);
+list.pop();
 
 console.log(list);
