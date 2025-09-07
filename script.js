@@ -91,6 +91,17 @@ class LinkedList {
 		string += ` ( ${list.value} ) -> `;
 		return this.toString(list.nextNode, string);
 	}
+
+	insertAt(value, index) {
+		debugger;
+		let nodeNumbr = 0;
+		let currNode = this.head;
+		while (currNode.nextNode != null && nodeNumbr != index) {
+			currNode = currNode.nextNode;
+			nodeNumbr += 1;
+		}
+		currNode.nextNode = new Node(value, currNode.nextNode);
+	}
 }
 
 class Node {
@@ -109,8 +120,9 @@ list.first();
 list.tail();
 list.at(1);
 list.pop();
-list.contains('lelss');
+list.contains('oi');
 list.find('lel');
-console.log(list.toString());
+list.toString();
+list.insertAt('tiago', 0);
 
-// console.dir(list);
+console.dir(list, { depth: null });
