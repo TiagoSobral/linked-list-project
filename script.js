@@ -5,11 +5,13 @@ const util = require('util');
 util.inspect.defaultOptions.depth = null;
 
 class LinkedList {
+	headProperty;
 	append(value) {
-		if (this.head == null) {
-			this.head = new Node(value);
+		debugger;
+		if (this.headProperty == undefined) {
+			return (this.headProperty = new Node(value));
 		} else {
-			let temp = this.head;
+			let temp = this.headProperty;
 			while (temp.nextNode != null) {
 				temp = temp.nextNode;
 			}
@@ -18,11 +20,11 @@ class LinkedList {
 	}
 
 	prepend(value) {
-		this.head = new Node(value, this.head);
+		this.headProperty = new Node(value, this.headProperty);
 	}
 
 	size() {
-		let node = this.head;
+		let node = this.headProperty;
 		let result = 0;
 		while (node != null) {
 			result += 1;
@@ -31,23 +33,21 @@ class LinkedList {
 		return result;
 	}
 
-	first() {
-		return this.head;
+	head() {
+		return this.headProperty;
 	}
 
 	tail() {
-		let curr = this.head;
-		let next = curr.nextNode;
-		while (next != null) {
-			curr = next;
-			next = next.nextNode;
+		let curr = this.headProperty;
+		while (curr.nextNode != null) {
+			curr = curr.nextNode;
 		}
 		return curr;
 	}
 
 	at(index) {
 		let array = [];
-		let temp = this.head;
+		let temp = this.headProperty;
 		while (temp.nextNode != null) {
 			array.push(temp);
 			temp = temp.nextNode;
@@ -56,7 +56,7 @@ class LinkedList {
 	}
 
 	pop() {
-		let curr = this.head;
+		let curr = this.headProperty;
 		let next = curr.nextNode;
 		while (next.nextNode != null) {
 			curr = next;
@@ -65,7 +65,7 @@ class LinkedList {
 		curr.nextNode = null;
 	}
 
-	contains(value, node = this.head) {
+	contains(value, node = this.headProperty) {
 		if (node.value == value) {
 			return true;
 		} else if (node.nextNode == null) {
@@ -76,7 +76,7 @@ class LinkedList {
 	}
 
 	find(value) {
-		let curr = this.head;
+		let curr = this.headProperty;
 		let index = 0;
 		while (curr.nextNode != null && curr.value != value) {
 			index += 1;
@@ -86,21 +86,32 @@ class LinkedList {
 		return null;
 	}
 
-	toString(list = this.head, string = '') {
+	toString(list = this.headProperty, string = '') {
 		if (list == null) return (string += null);
 		string += ` ( ${list.value} ) -> `;
 		return this.toString(list.nextNode, string);
 	}
 
 	insertAt(value, index) {
-		debugger;
 		let nodeNumbr = 0;
-		let currNode = this.head;
+		let currNode = this.headProperty;
 		while (currNode.nextNode != null && nodeNumbr != index) {
 			currNode = currNode.nextNode;
 			nodeNumbr += 1;
 		}
 		currNode.nextNode = new Node(value, currNode.nextNode);
+	}
+
+	removeAt(index) {
+		let nodeNumbr = 0;
+		let currNode = this.headProperty;
+		let next = currNode.nextNode;
+		while (next != null && nodeNumbr != index) {
+			currNode = next;
+			next = next.nextNode;
+			nodeNumbr += 1;
+		}
+		currNode.nextNode = next.nextNode;
 	}
 }
 
@@ -116,7 +127,7 @@ list.append('hey');
 list.append('lel');
 list.prepend('oi');
 list.size();
-list.first();
+list.head();
 list.tail();
 list.at(1);
 list.pop();
@@ -124,5 +135,6 @@ list.contains('oi');
 list.find('lel');
 list.toString();
 list.insertAt('tiago', 0);
+list.removeAt(1);
 
 console.dir(list, { depth: null });
