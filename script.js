@@ -66,7 +66,6 @@ class LinkedList {
 	}
 
 	contains(value, node = this.head) {
-		// debugger;
 		if (node.value == value) {
 			return true;
 		} else if (node.nextNode == null) {
@@ -77,7 +76,6 @@ class LinkedList {
 	}
 
 	find(value) {
-		debugger;
 		let curr = this.head;
 		let index = 0;
 		while (curr.nextNode != null && curr.value != value) {
@@ -86,6 +84,12 @@ class LinkedList {
 		}
 		if (curr.value == value) return index;
 		return null;
+	}
+
+	toString(list = this.head, string = '') {
+		if (list == null) return (string += null);
+		string += ` ( ${list.value} ) -> `;
+		return this.toString(list.nextNode, string);
 	}
 }
 
@@ -107,5 +111,6 @@ list.at(1);
 list.pop();
 list.contains('lelss');
 list.find('lel');
+console.log(list.toString());
 
-console.dir(list);
+// console.dir(list);
