@@ -1,13 +1,8 @@
 #!/usr/bin/node
 
-const util = require('util');
-
-util.inspect.defaultOptions.depth = null;
-
-class LinkedList {
+export class LinkedList {
 	headProperty;
 	append(value) {
-		debugger;
 		if (this.headProperty == undefined) {
 			return (this.headProperty = new Node(value));
 		} else {
@@ -88,28 +83,29 @@ class LinkedList {
 
 	toString(list = this.headProperty, string = '') {
 		if (list == null) return (string += null);
-		string += ` ( ${list.value} ) -> `;
+		string += `( ${list.value} ) -> `;
 		return this.toString(list.nextNode, string);
 	}
 
 	insertAt(value, index) {
 		let nodeNumbr = 0;
 		let currNode = this.headProperty;
-		while (currNode.nextNode != null && nodeNumbr != index) {
-			currNode = currNode.nextNode;
+		while (currNode.nextNode != null && nodeNumbr != index - 1) {
 			nodeNumbr += 1;
+			currNode = currNode.nextNode;
 		}
 		currNode.nextNode = new Node(value, currNode.nextNode);
 	}
 
 	removeAt(index) {
+		// debugger;
 		let nodeNumbr = 0;
 		let currNode = this.headProperty;
 		let next = currNode.nextNode;
-		while (next != null && nodeNumbr != index) {
+		while (next != null && nodeNumbr != index - 1) {
+			nodeNumbr += 1;
 			currNode = next;
 			next = next.nextNode;
-			nodeNumbr += 1;
 		}
 		currNode.nextNode = next.nextNode;
 	}
@@ -121,20 +117,3 @@ class Node {
 		this.nextNode = nextNode;
 	}
 }
-const list = new LinkedList();
-
-list.append('hey');
-list.append('lel');
-list.prepend('oi');
-list.size();
-list.head();
-list.tail();
-list.at(1);
-list.pop();
-list.contains('oi');
-list.find('lel');
-list.toString();
-list.insertAt('tiago', 0);
-list.removeAt(1);
-
-console.dir(list, { depth: null });
