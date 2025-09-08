@@ -8,6 +8,7 @@ list.append('parrot');
 list.append('hamster');
 list.append('snake');
 list.append('turtle');
+list.removeAt(7);
 
 console.dir(list, { depth: null });
 console.log(list.toString());

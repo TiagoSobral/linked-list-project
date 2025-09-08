@@ -94,11 +94,12 @@ export class LinkedList {
 			nodeNumbr += 1;
 			currNode = currNode.nextNode;
 		}
+		if (index !== nodeNumbr) return console.log('Incorrect Index');
 		currNode.nextNode = new Node(value, currNode.nextNode);
 	}
 
 	removeAt(index) {
-		// debugger;
+		debugger;
 		let nodeNumbr = 0;
 		let currNode = this.headProperty;
 		let next = currNode.nextNode;
@@ -107,6 +108,7 @@ export class LinkedList {
 			currNode = next;
 			next = next.nextNode;
 		}
+		if (index !== nodeNumbr) return console.log('Incorrect Index');
 		currNode.nextNode = next.nextNode;
 	}
 }
